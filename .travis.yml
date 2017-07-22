@@ -1,22 +1,18 @@
 language: python
 python:
-  - 2.7
-
+- 2.7
 services:
-  - docker
-
+- docker
 install:
-  - docker build -t php .
-  - docker run -d -p 127.0.0.1:80:80 --name nginx-php-fpm php
-
+- docker build -t php .
+- docker run -d -p 127.0.0.1:80:80 --name nginx-php-fpm php
 before_script:
-  - pip install -r .travis/requirements.txt
-
+- pip install -r .travis/requirements.txt
 script:
-  - docker ps
-  - sleep 5
-  - curl -I 127.0.0.1:80
-  - python .travis/tests.py
-
+- docker ps
+- sleep 5
+- curl -I 127.0.0.1:80
+- python .travis/tests.py
 notifications:
-  slack: ngineered:EIKJFrzibOe0TwUhLXNe8Q2Q
+  slack:
+    secure: L3P6BqhymqW2blm64LJ+2uGxe2cs4QqbQDwFfh3XXK69WaiXuz/yTygWXnecoOkpwaySDu6OU1jgX4a1S6OBtlEwD3Z2IqAj/3CpzL+dW8ST+uD+8YPygHxYcgpHpmvWhCfN4G/jnA0gvkIBHvDVA9/aDk4rE6tkTlK1LeA3tQ92jsDWvLM+We5zh+PIZChafY0TOFybuw3jwFXVM4aO4ZLV632SntjP5lfE0loV2DCMLlatyoEq+6HPKcAY0dYy4Ys3XKXHzHAruEqlNGU/E9XLsvGYaHyn4khDuhRKQo8v/ITFpblCU4z/FlLtyLMbJ0kPQqgtRykfu7hybqXwKy3ljOIKEvnGYpI0IiOoib+RVTqSM0yYTHlqMKXWL7Sgy6/oSXLGfSoqaSKsce7+GXeLVUuFEuz/zXciSPNvraTO5IzyT20d0nhOGcX0bKUI0ipLOOOYpjFwZIey3ICGqjjrMlxtkhGEY1DfkgxKgI6C4+UGZp8SCMRkSPRpJ++tJ1VuHf45nB13vPPduw4n0roSOcu+7LXePJwBT2CPEuPtDSCxUhmdQBh36GA0+nU+cVWkYZFjbOL+hGTJGwnsuOafcsSGM2qZzvdVjIUxTYnbqd8FDhnUW5UfiSLtIeIZeEHyH8mGC4PmACNcpNy1DCPqYk96HZ2817FyN0wAmEI=

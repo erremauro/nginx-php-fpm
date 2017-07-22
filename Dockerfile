@@ -8,7 +8,13 @@ ENV php_vars /usr/local/etc/php/conf.d/docker-vars.ini
 
 ENV NGINX_VERSION 1.13.1
 
-RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
+RUN apk add --update  --repository http://dl-3.alpinelinux.org/alpine/v2.6/main && \
+  apk add autoconf gcc build-base && \
+  pecl install redis && \
+  docker-php-ext-enable redis && \
+  apk del autoconf gcc build-base && \
+  \
+  GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && CONFIG="\
     --prefix=/etc/nginx \
     --sbin-path=/usr/sbin/nginx \
